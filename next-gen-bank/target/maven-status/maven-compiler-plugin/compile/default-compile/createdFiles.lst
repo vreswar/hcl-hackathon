@@ -1,8 +1,0 @@
-org\nextgenbank\domain\AppUser.class
-org\nextgenbank\web\AppUserRestController.class
-org\nextgenbank\config\WebSecurityConfig.class
-org\nextgenbank\config\JWTFilter.class
-org\nextgenbank\NextGenBankingApp.class
-org\nextgenbank\web\HomeRestController.class
-org\nextgenbank\repository\AppUserRepository.class
-org\nextgenbank\config\LoggingRequestInterceptor.class

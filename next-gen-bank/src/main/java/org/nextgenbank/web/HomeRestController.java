@@ -20,7 +20,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.nextgenbank.domain.AppUser;
+import org.nextgenbank.domain.Login;
+import org.nextgenbank.domain.UserDetail;
+import org.nextgenbank.exception.NextGenerationBankException;
 import org.nextgenbank.repository.AppUserRepository;
+import org.nextgenbank.repository.service.UserService;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -35,7 +39,9 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class HomeRestController {
 	@Autowired
 	private AppUserRepository appUserRepository;
-
+	@Autowired
+	private UserService userService;
+	
 	/**
 	 * This method is used for user registration. Note: user registration is not
 	 * require any authentication.
@@ -64,7 +70,7 @@ public class HomeRestController {
 	public AppUser user(Principal principal) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String loggedUsername = auth.getName();
-		return appUserRepository.findOneByUsername(loggedUsername);
+		return null;
 	}
 
 	/**
@@ -72,24 +78,27 @@ public class HomeRestController {
 	 * @param password
 	 * @param response
 	 * @return JSON contains token and user after success authentication.
+	 * @throws NextGenerationBankException 
 	 * 
 	 */
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-	public ResponseEntity<Map<String, Object>> login(@RequestParam String username, @RequestParam String password,
-			HttpServletResponse response){
+	public ResponseEntity<Map<String, Object>> login(@RequestBody Login loginUser,HttpServletResponse response) throws NextGenerationBankException{
 		String token = null;
-		AppUser appUser = appUserRepository.findOneByUsername(username);
+		UserDetail appUserDetails = userService.verifyLogin(loginUser.getUsername(), loginUser.getPassword());
 		Map<String, Object> tokenMap = new HashMap<>();
-		if (appUser != null && appUser.getPassword().equals(password)) {
-			token = Jwts.builder().setSubject(username).claim("roles", appUser.getRoles()).setIssuedAt(new Date())
-					.signWith(SignatureAlgorithm.HS256, "secretkey").compact();
+		if (null!=appUserDetails) {
+			token = generateJWTToken(appUserDetails);
 			tokenMap.put("token", token);
-			tokenMap.put("user", appUser);
+			tokenMap.put("accountsummary", appUserDetails);
 			return new ResponseEntity<>(tokenMap, HttpStatus.OK);
 		} else {
 			tokenMap.put("token", null);
 			return new ResponseEntity<>(tokenMap, HttpStatus.UNAUTHORIZED);
 		}
-
+	}
+	
+	public String generateJWTToken(UserDetail appUserDetails) {
+		return Jwts.builder().setSubject(appUserDetails.getUserName()).claim("roles", appUserDetails.getRoleId()).setIssuedAt(new Date())
+				.signWith(SignatureAlgorithm.HS256, "secretkey").compact();
 	}
 }

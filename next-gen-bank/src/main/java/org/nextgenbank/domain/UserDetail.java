@@ -46,27 +46,25 @@ public class UserDetail implements Serializable {
 	private String userName;
 
 	//bi-directional many-to-one association to UserAccountSummary
-	@OneToMany(mappedBy="userDetail1")
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name ="id",referencedColumnName ="USER_ID")
 	private List<UserAccountSummary> userAccountSummaries1;
 
 	//bi-directional many-to-one association to UserAccountSummary
-	@OneToMany(mappedBy="userDetail2")
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name ="USER_ID",referencedColumnName ="id")
 	private List<UserAccountSummary> userAccountSummaries2;
 
 	//bi-directional many-to-one association to UserProfile
-	@OneToMany(mappedBy="userDetail1")
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name ="id",referencedColumnName ="USER_ID")
 	private List<UserProfile> userProfiles1;
 
 	//bi-directional many-to-one association to UserProfile
-	@OneToMany(mappedBy="userDetail2")
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name ="id",referencedColumnName ="USER_ID")
 	private List<UserProfile> userProfiles2;
-
-	//bi-directional many-to-one association to UserRole
-	@OneToMany(mappedBy="userDetail")
-	private List<UserRole> userRoles;
-
-	public UserDetail() {
-	}
 
 	public int getId() {
 		return this.id;
@@ -226,28 +224,6 @@ public class UserDetail implements Serializable {
 		userProfiles2.setUserDetail2(null);
 
 		return userProfiles2;
-	}
-
-	public List<UserRole> getUserRoles() {
-		return this.userRoles;
-	}
-
-	public void setUserRoles(List<UserRole> userRoles) {
-		this.userRoles = userRoles;
-	}
-
-	public UserRole addUserRole(UserRole userRole) {
-		getUserRoles().add(userRole);
-		userRole.setUserDetail(this);
-
-		return userRole;
-	}
-
-	public UserRole removeUserRole(UserRole userRole) {
-		getUserRoles().remove(userRole);
-		userRole.setUserDetail(null);
-
-		return userRole;
 	}
 
 }

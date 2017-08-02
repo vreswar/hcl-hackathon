@@ -35,13 +35,6 @@ public class UserRole implements Serializable {
 	@Column(name="UPDATED_DATE")
 	private Date updatedDate;
 
-	//bi-directional many-to-one association to UserDetail
-	@ManyToOne
-	@JoinColumn(name="USER_ID")
-	private UserDetail userDetail;
-
-	public UserRole() {
-	}
 
 	public int getId() {
 		return this.id;
@@ -89,14 +82,6 @@ public class UserRole implements Serializable {
 
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
-	}
-
-	public UserDetail getUserDetail() {
-		return this.userDetail;
-	}
-
-	public void setUserDetail(UserDetail userDetail) {
-		this.userDetail = userDetail;
 	}
 
 }

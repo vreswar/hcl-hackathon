@@ -49,6 +49,12 @@ public class UserProfile implements Serializable {
 
 	@Column(name="MOBILE_NUMBER")
 	private String mobileNumber;
+	
+	@Column(name="BSN")
+	private String bsn;
+	
+	@Column(name="SHORT_NAME")
+	private String shortName;
 
 	@Column(name="PARENT_ID")
 	private int parentId;
