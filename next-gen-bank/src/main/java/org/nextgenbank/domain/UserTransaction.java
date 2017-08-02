@@ -28,8 +28,8 @@ public class UserTransaction implements Serializable {
 	@Column(name="TRAANSACTION_SHORT_FORM")
 	private String traansactionShortForm;
 
-	@Column(name="TRANSACTION_BALACE")
-	private int transactionBalace;
+	@Column(name="TRANSACTION_AMOUNT")
+	private int transactionAmount;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="TRANSACTION_DATE")
@@ -76,12 +76,12 @@ public class UserTransaction implements Serializable {
 		this.traansactionShortForm = traansactionShortForm;
 	}
 
-	public int getTransactionBalace() {
-		return this.transactionBalace;
+	public int getTransactionAmount() {
+		return this.transactionAmount;
 	}
 
-	public void setTransactionBalace(int transactionBalace) {
-		this.transactionBalace = transactionBalace;
+	public void setTransactionAmount(int transactionAmount) {
+		this.transactionAmount = transactionAmount;
 	}
 
 	public Date getTransactionDate() {

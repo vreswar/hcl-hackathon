@@ -50,17 +50,15 @@ public class UserAccountSummary implements Serializable {
 	private Date updatedDate;
 
 	//bi-directional many-to-one association to UserDetail
-	@ManyToOne
-	@JoinColumn(name="USER_ID")
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name ="USER_ID",referencedColumnName="ID")
 	private UserDetail userDetail1;
 
 	//bi-directional many-to-one association to UserDetail
-	@ManyToOne
-	@JoinColumn(name="USER_ID")
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name ="USER_ID",referencedColumnName="ID")
 	private UserDetail userDetail2;
 
-	public UserAccountSummary() {
-	}
 
 	public int getId() {
 		return this.id;
