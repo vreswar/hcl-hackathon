@@ -51,13 +51,13 @@ public class UserAccountSummary implements Serializable {
 
 	//bi-directional many-to-one association to UserDetail
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name ="USER_ID",referencedColumnName="ID")
+	@JoinColumn(name ="USER_ID",referencedColumnName="ID", insertable = false, updatable = false)
 	private UserDetail userDetail1;
 
 	//bi-directional many-to-one association to UserDetail
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name ="USER_ID",referencedColumnName="ID")
-	private UserDetail userDetail2;
+	@JoinColumn(name ="ROLE_ID",referencedColumnName="ID", insertable = false, updatable = false)
+	private UserRole userRole;
 
 
 	public int getId() {
@@ -156,12 +156,12 @@ public class UserAccountSummary implements Serializable {
 		this.userDetail1 = userDetail1;
 	}
 
-	public UserDetail getUserDetail2() {
-		return this.userDetail2;
+	public UserRole getUserRole() {
+		return this.userRole;
 	}
 
-	public void setUserDetail2(UserDetail userDetail2) {
-		this.userDetail2 = userDetail2;
+	public void setUserRole(UserRole userRole) {
+		this.userRole = userRole;
 	}
 
 }

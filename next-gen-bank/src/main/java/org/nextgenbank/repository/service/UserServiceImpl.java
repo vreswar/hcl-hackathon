@@ -18,46 +18,22 @@ import org.nextgenbank.exception.NextGenerationBankException;
 
 
 @Service
-public class UserProfileServiceImpl implements UserProfileService {
+public class UserServiceImpl implements UserService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserProfileServiceImpl.class);
 	
 	@Autowired
 	private UserDAO userDAO;
 
 	@Override
-	public UserProfileResponse createProfile(UserProfileRequest request) throws NextGenerationBankException{
-		LOGGER.info("In getTransactionHistory response");
-		UserProfileResponse response = new UserProfileResponse();
-		
-		UserDetail detail = userDAO.createUserDetail(mapRequestToUserDetail(request));
-		userDAO.createUserProfile(mapRequestToUserProfile(request, Integer.valueOf(detail.getRoleId())));
-		
-			
-		return response;
+	public UserDetail verifyLogin(String pUserName, String pPassword) throws NextGenerationBankException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	private UserDetail mapRequestToUserDetail(UserProfileRequest request) {
-		UserDetail detail = new UserDetail();
-		if(request != null) {
-			detail.setCreatedDate(Calendar.getInstance().getTime()); 
-			detail.setPassword(request.getPassword());
-			detail.setRoleId("2");
-			detail.setUserName(request.getUserId());
-		}
-		return detail;
-	}
-	
-	private UserProfile mapRequestToUserProfile(UserProfileRequest request, Integer pRoleId ) {
-		UserProfile userProfile = new UserProfile();
-		if(request != null) {
-			userProfile.setFirstName(request.getFirstName()); 
-			userProfile.setLastName(request.getLastName());
-			userProfile.setTitle(request.getEmailId());
-			userProfile.setMobileNumber(request.getMobileNumber());
-			userProfile.setRoleId(pRoleId);
-			userProfile.setTitle(request.getTitle());
-		}
-		return userProfile;
+	@Override
+	public UserDetail getAccountSummary(UserDetail userDetailLoggedin) throws NextGenerationBankException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

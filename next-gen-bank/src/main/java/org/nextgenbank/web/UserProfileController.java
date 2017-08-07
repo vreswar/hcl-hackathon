@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nextgenbank.exception.MessageCodeEnum;
-import com.nextgenbank.exception.NextGenerationBankException;
-import com.nextgenbank.swagger.model.UserProfileRequest;
-import com.nextgenbank.swagger.model.UserProfileResponse;
+import org.nextgenbank.exception.MessageCodeEnum;
+import org.nextgenbank.exception.NextGenerationBankException;
+import org.nextgenbank.swagger.model.UserProfileRequest;
+import org.nextgenbank.swagger.model.UserProfileResponse;
 
 /**
  * @author pushpeswar.r

@@ -3,7 +3,11 @@
  */
 package org.nextgenbank.web;
 
+import org.nextgenbank.exception.MessageCodeEnum;
+import org.nextgenbank.exception.NextGenerationBankException;
 import org.nextgenbank.repository.service.GetTransactionHistoryService;
+import org.nextgenbank.swagger.model.GetTransactionHistoryRequest;
+import org.nextgenbank.swagger.model.GetTransactionHistoryResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
@@ -12,11 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.nextgenbank.exception.MessageCodeEnum;
-import com.nextgenbank.exception.NextGenerationBankException;
-import com.nextgenbank.swagger.model.GetTransactionHistoryRequest;
-import com.nextgenbank.swagger.model.GetTransactionHistoryResponse;
 
 /**
  * @author pushpeswar.r

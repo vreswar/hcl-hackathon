@@ -76,13 +76,13 @@ public class UserProfile implements Serializable {
 
 	//bi-directional many-to-one association to UserDetail
 	@ManyToOne
-	@JoinColumn(name="USER_ID")
-	private UserDetail userDetail1;
+	@JoinColumn(name ="USER_ID",referencedColumnName="ID", insertable = false, updatable = false)
+	private UserDetail userDetail;
 
 	//bi-directional many-to-one association to UserDetail
 	@ManyToOne
-	@JoinColumn(name="USER_ID")
-	private UserDetail userDetail2;
+	@JoinColumn(name ="ROLE_ID",referencedColumnName="ID", insertable = false, updatable = false)
+	private UserRole userRole;
 
 	public UserProfile() {
 	}
@@ -223,20 +223,20 @@ public class UserProfile implements Serializable {
 		this.updatedDate = updatedDate;
 	}
 
-	public UserDetail getUserDetail1() {
-		return this.userDetail1;
+	public UserDetail getUserDetail() {
+		return this.userDetail;
 	}
 
-	public void setUserDetail1(UserDetail userDetail1) {
-		this.userDetail1 = userDetail1;
+	public void setUserDetail(UserDetail userDetail) {
+		this.userDetail = userDetail;
 	}
 
-	public UserDetail getUserDetail2() {
-		return this.userDetail2;
+	public UserRole getUserRole() {
+		return this.userRole;
 	}
 
-	public void setUserDetail2(UserDetail userDetail2) {
-		this.userDetail2 = userDetail2;
+	public void setUserRole(UserRole userRole) {
+		this.userRole = userRole;
 	}
 
 }

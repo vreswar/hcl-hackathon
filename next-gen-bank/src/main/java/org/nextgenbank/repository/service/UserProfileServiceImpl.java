@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import org.nextgenbank.exception.NextGenerationBankException;
-import com.nextgenbank.swagger.model.UserProfileRequest;
-import com.nextgenbank.swagger.model.UserProfileResponse;
+import org.nextgenbank.swagger.model.UserProfileRequest;
+import org.nextgenbank.swagger.model.UserProfileResponse;
 
 @Service
 public class UserProfileServiceImpl implements UserProfileService {
