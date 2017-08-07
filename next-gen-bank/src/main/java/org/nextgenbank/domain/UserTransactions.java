@@ -11,7 +11,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name="user_transactions")
-@NamedQuery(name="UserTransaction.findAll", query="SELECT u FROM UserTransaction u")
+@NamedQuery(name="UserTransactions.findAll", query="SELECT u FROM UserTransactions u")
 public class UserTransactions implements Serializable {
 	private static final long serialVersionUID = 1L;
 

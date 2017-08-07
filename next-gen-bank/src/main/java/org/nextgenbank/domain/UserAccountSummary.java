@@ -27,8 +27,8 @@ public class UserAccountSummary implements Serializable {
 
 	private int balance;
 
-	@Column(name="COUNTRY_CODE")
-	private String countryCode;
+	@Column(name="CURRENCY_CODE")
+	private String currencyCode;
 
 	@Column(name="CREATED_BY")
 	private String createdBy;
@@ -92,12 +92,12 @@ public class UserAccountSummary implements Serializable {
 		this.balance = balance;
 	}
 
-	public String getCountryCode() {
-		return this.countryCode;
+	public String getCurrencyCode() {
+		return this.currencyCode;
 	}
 
-	public void setCountryCode(String countryCode) {
-		this.countryCode = countryCode;
+	public void setCurrencyCode(String currencyCode) {
+		this.currencyCode = currencyCode;
 	}
 
 	public String getCreatedBy() {
