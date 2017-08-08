@@ -205,7 +205,7 @@
 				<version>0.7.5.201505241946</version>
 				<configuration>
 					<excludes>
-						<exclude>**/com/nextgenbank/swagger/**/*</exclude>
+						<exclude>**/org/nextgenbank/swagger/**/*</exclude>
 					</excludes>
 				</configuration>
 				<executions>
