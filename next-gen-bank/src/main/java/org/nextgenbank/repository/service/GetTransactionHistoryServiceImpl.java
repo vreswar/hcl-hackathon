@@ -34,7 +34,7 @@ public class GetTransactionHistoryServiceImpl implements GetTransactionHistorySe
 				details.setTransactionAmount(Integer.valueOf(userTransactions.getTransactionAmount()).toString());
 				details.setTransactionDate(userTransactions.getTransactionDate().toString());
 				details.setTransactionDetail(userTransactions.getTransactionDetail());
-				details.setTransactionShortForm(userTransactions.getTraansactionShortForm());
+				details.setTransactionShortForm(userTransactions.getTransactionShortForm());
 				details.setTransactionType(userTransactions.getTransactionType());
 			}
 			

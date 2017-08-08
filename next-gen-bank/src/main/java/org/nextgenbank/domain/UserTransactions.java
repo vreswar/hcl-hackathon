@@ -25,8 +25,8 @@ public class UserTransactions implements Serializable {
 	@Column(name="IS_DEBIT")
 	private String isDebit;
 
-	@Column(name="TRAANSACTION_SHORT_FORM")
-	private String traansactionShortForm;
+	@Column(name="TRANSACTION_SHORT_FORM")
+	private String transactionShortForm;
 
 	@Column(name="TRANSACTION_AMOUNT")
 	private int transactionAmount;
@@ -68,12 +68,12 @@ public class UserTransactions implements Serializable {
 		this.isDebit = isDebit;
 	}
 
-	public String getTraansactionShortForm() {
-		return this.traansactionShortForm;
+	public String getTransactionShortForm() {
+		return this.transactionShortForm;
 	}
 
-	public void setTraansactionShortForm(String traansactionShortForm) {
-		this.traansactionShortForm = traansactionShortForm;
+	public void setTransactionShortForm(String transactionShortForm) {
+		this.transactionShortForm = transactionShortForm;
 	}
 
 	public int getTransactionAmount() {

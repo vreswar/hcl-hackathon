@@ -260,7 +260,7 @@
                   }
                }
             },
-            "operationId":"post-search",
+            "operationId":"post-search-1",
             "parameters":[  
                {  
                   "name":"getTransactionHistoryRequest",
@@ -341,7 +341,7 @@
                   "$ref":"#/parameters/OriginParam"
                }
             ],
-            "summary":"post-search"
+            "summary":"post-search-1"
          }
       }
    },
