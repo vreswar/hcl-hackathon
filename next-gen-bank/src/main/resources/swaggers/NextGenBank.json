@@ -428,11 +428,7 @@
      "getTransactionHistoryRequest":{  
          "type":"object",
          "properties":{  
-            "userId":{  
-               "description":"provide bank customer user Id",
-               "type":"string"
-            },
-            "accountNumber":{  
+           "accountNumber":{  
                "description":"encrypted bank customer login password",
                "type":"string"
             }

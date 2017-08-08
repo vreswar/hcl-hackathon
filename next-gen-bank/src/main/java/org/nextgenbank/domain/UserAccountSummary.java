@@ -39,6 +39,9 @@ public class UserAccountSummary implements Serializable {
 
 	@Column(name="ROLE_ID")
 	private int roleId;
+	
+	@Column(name="USER_ID")
+	private int userId;
 
 	private String title;
 
@@ -122,6 +125,14 @@ public class UserAccountSummary implements Serializable {
 
 	public void setRoleId(int roleId) {
 		this.roleId = roleId;
+	}
+	
+	public int getUserId() {
+		return this.userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public String getTitle() {

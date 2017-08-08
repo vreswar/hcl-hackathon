@@ -10,6 +10,7 @@ import org.nextgenbank.swagger.model.GetTransactionHistoryRequest;
 import org.nextgenbank.swagger.model.GetTransactionHistoryResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,6 +28,7 @@ public class TransactionRestController {
 	/** property to hold the static logger instance to log data */
 	private static final Logger LOGGER = LoggerFactory.getLogger(TransactionRestController.class);
 	/** property to hold get transaction history service */
+	@Autowired
 	GetTransactionHistoryService service;
 	
 	@CrossOrigin
@@ -36,7 +38,7 @@ public class TransactionRestController {
 		LOGGER.info("In getTransactionHistory method to get transaction history ");
 		if (request != null) {
 			GetTransactionHistoryResponse response = service
-					.getTransactionHistory(request.getUserId(), request.getAccountNumber());
+					.getTransactionHistory(request.getAccountNumber());
 			return response;
 		} else {
 			throw new NextGenerationBankException(MessageCodeEnum.GET_TRANSACTION_HISTORY_FAILED, "Failed to provide transaction history details.");

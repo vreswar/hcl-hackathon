@@ -1,7 +1,9 @@
 package org.nextgenbank.repository.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.nextgenbank.domain.UserAccountSummary;
 import org.nextgenbank.domain.UserTransactions;
 import org.nextgenbank.exception.MessageCodeEnum;
 import org.nextgenbank.exception.NextGenerationBankException;
@@ -23,11 +25,21 @@ public class GetTransactionHistoryServiceImpl implements GetTransactionHistorySe
 	private UserDAO userDAO;
 
 	@Override
-	public GetTransactionHistoryResponse getTransactionHistory(String pUserName, String pAccountNumber) throws NextGenerationBankException {
+	public GetTransactionHistoryResponse getTransactionHistory(String pAccountNumber) throws NextGenerationBankException {
 		LOGGER.info("In getTransactionHistory response");
 		GetTransactionHistoryResponse response = new GetTransactionHistoryResponse();
-		if(pUserName != null && pAccountNumber != null) {
-			List<UserTransactions> transactions = userDAO.getTransactionHistory(pUserName, pAccountNumber);
+		List<TransactionDetails> transactionDetailsList = new ArrayList<TransactionDetails>();
+		if(pAccountNumber != null) {
+			List<UserTransactions> transactions = userDAO.getTransactionHistory(pAccountNumber);
+			UserAccountSummary accountSummary = userDAO.getAccountSummary(pAccountNumber);
+			
+			if(accountSummary != null) {
+				response.setAccountNumber(pAccountNumber);
+				response.setAccountType(accountSummary.getAccountType());
+				response.setBalance(String.valueOf(accountSummary.getBalance()));
+				response.setCurrencyCode(accountSummary.getCurrencyCode());
+			}
+			
 			for (UserTransactions userTransactions : transactions) {
 				final TransactionDetails details = new TransactionDetails();
 				details.setIsDebit(userTransactions.getIsDebit());
@@ -36,7 +48,9 @@ public class GetTransactionHistoryServiceImpl implements GetTransactionHistorySe
 				details.setTransactionDetail(userTransactions.getTransactionDetail());
 				details.setTransactionShortForm(userTransactions.getTransactionShortForm());
 				details.setTransactionType(userTransactions.getTransactionType());
+				transactionDetailsList.add(details);
 			}
+			response.setTransactions(transactionDetailsList);
 			
 		} else {
 			throw new NextGenerationBankException(MessageCodeEnum.INVALID_REQUEST, "Request data is not available to process the request. Please provide valid inputs to continue.");
